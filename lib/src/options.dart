@@ -104,7 +104,11 @@ class PusherOptions {
         ...parameters,
         if (hostUri?.query.isNotEmpty == true) ...hostUri!.queryParameters,
       },
-      path: '/app/$key',
+      // path: '/app/$key',
+      path:
+          hostUri?.path.isNotEmpty == true
+              ? [hostUri!.path, '/app/$key'].join('/').replaceAll('//', '/')
+              : '/app/$key',
     );
   }
 
